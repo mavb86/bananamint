@@ -19,7 +19,6 @@ import java.time.LocalDate;
 public class Goal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Min(1)
     @Schema(name = "Goal ID", example = "1", required = true)
     private Long id;
 
