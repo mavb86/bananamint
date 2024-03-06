@@ -1,5 +1,6 @@
 package com.banana.bananamint.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,8 +28,11 @@ public class Account {
     private double maxOverdraft;
     @ManyToOne
     @JoinColumn(name="customer_id")
+    @JsonIgnore
     private Customer owner;
 
     private boolean active;
-
+    public void ingresar (Double importe) {
+        this.balance = this.balance + importe;
+    }
 }

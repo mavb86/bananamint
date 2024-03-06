@@ -1,6 +1,9 @@
 package com.banana.bananamint.config;
 
+import com.banana.bananamint.exception.AccountException;
+import com.banana.bananamint.exception.CustomerException;
 import com.banana.bananamint.exception.GlobalException;
+import com.banana.bananamint.exception.IncomeExpenseException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -21,7 +24,21 @@ public class GlobalExceptionController {
     public ResponseEntity<Object> handleGlobalException(GlobalException exception) {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
     }
-
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(value = CustomerException.class)
+    public ResponseEntity<Object> handleCustomerException(CustomerException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+    }
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(value = AccountException.class)
+    public ResponseEntity<Object> handleAccountException(AccountException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+    }
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(value = IncomeExpenseException.class)
+    public ResponseEntity<Object> handleIncomeExpenseException(IncomeExpenseException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+    }
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {

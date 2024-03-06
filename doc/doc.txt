@@ -1,0 +1,5 @@
+❑Como usuario, quiero poder añadir nuevos ingresos para que el sistema los pueda tener en cuenta en mi
+gestión financiera.
+POST / IncomeExpense / ingresar / ?user={cid}&toMoney={aid}
+    -> JSON
+    <- 201 (Created), 400, 404, 412, 500

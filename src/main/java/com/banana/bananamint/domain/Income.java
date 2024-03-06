@@ -1,5 +1,6 @@
 package com.banana.bananamint.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,6 +24,7 @@ public class Income {
     private Integer Id;
     @ManyToOne
     @JoinColumn(name = "customer_id")
+    @JsonIgnore
     @Schema(name = "Customer ID", example = "1", required = true)
     private Customer user;
     @Min(1)
@@ -33,6 +35,7 @@ public class Income {
     private LocalDate enterDate;
     @ManyToOne
     @JoinColumn(name = "account_id")
+    @JsonIgnore
     @Schema(name = "Account ID", example = "1", required = true)
     private Account moneyTo;
     @Schema(name = "Status", example = "accepted", required = true)

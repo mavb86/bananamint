@@ -1,8 +1,8 @@
 package com.banana.bananamint.services;
 
-import com.banana.bananamint.payload.IncomeExpenseComparison;
 import com.banana.bananamint.domain.Income;
 import com.banana.bananamint.exception.IncomeExpenseException;
+import com.banana.bananamint.payload.IncomeExpenseComparison;
 
 import java.time.LocalDate;
 import java.util.List;
