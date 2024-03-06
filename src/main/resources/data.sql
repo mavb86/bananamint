@@ -1,1 +1,2 @@
 INSERT INTO customer (name, email, birth_date, dni) VALUES ('Alex Perez','alex@bananamint.com','1985-03-06','12345678L');
+INSERT INTO goal (name, description, target_amount, status, target_date, customer_id) VALUES ('Objetivo 1','Descripción del objetivo 1','5000','En proceso','2025-01-01','1');
