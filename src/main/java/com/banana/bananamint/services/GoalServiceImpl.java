@@ -25,7 +25,7 @@ public class GoalServiceImpl implements GoalService {
     @Override
     public List<Goal> add(Long idCustomer, Goal goal) throws GoalException, SQLException {
         repo.save(goal);
-        return repo.findAllByUser_Id(idCustomer);
+        return this.showAll(idCustomer);
     }
 
     @Override
