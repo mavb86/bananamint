@@ -2,7 +2,6 @@ package com.banana.bananamint.controller;
 
 import com.banana.bananamint.domain.Customer;
 import com.banana.bananamint.domain.Goal;
-import com.banana.bananamint.persistence.CustomerJPARepository;
 import com.banana.bananamint.services.GoalServiceImpl;
 import com.banana.bananamint.util.JsonUtil;
 import org.junit.jupiter.api.Test;
@@ -35,21 +34,18 @@ class GoalControllerTest {
     private MockMvc mvc;
     @MockBean
     private GoalServiceImpl goalService;
-    @MockBean
-    private CustomerJPARepository customerRepo;
 
     @Test
     void dadoObjetivo_cuandoObjetivoOK_thenRespuestaOK() throws Exception {
-        /*
-        Customer customer = new Customer(1L, "Alex Perez", "alex@bananamint.com", LocalDate.now(), "12345678L");
-        customerRepo.save(customer);
+
+        Customer customer = new Customer(1L);
         Goal newGoal = new Goal(null, "Objetivo 1", "Descripción del objetivo 1", 5000.00, "En proceso", LocalDate.now(), customer);
 
         List<Goal> listGoals = new ArrayList();
-        Goal salidaGoal = new Goal(1L, "Objetivo 1", "Descripción del objetivo 1", 5000.00, "En proceso", LocalDate.now(), customer);
+        Goal salidaGoal = new Goal(2L, "Objetivo 1", "Descripción del objetivo 1", 5000.00, "En proceso", LocalDate.now(), customer);
         listGoals.add(salidaGoal);
 
-        Mockito.when(goalService.add(customer.getId(),newGoal)).thenReturn(listGoals);
+        Mockito.when(goalService.add(any(),any())).thenReturn(listGoals);
 
         mvc.perform(post("/goals/customer/1")
                         .content(JsonUtil.asJsonString(newGoal))
@@ -60,13 +56,13 @@ class GoalControllerTest {
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.id").exists())
                 .andExpect(jsonPath("$.id", is(greaterThanOrEqualTo(1))));
-         */
+
 
     }
 
     @Test
     void dadoObjetivo_cuandoObjetivoOK_thenRespuesta400() throws Exception {
-        Customer customer = new Customer(1L, "Alex Perez", "alex@bananamint.com", LocalDate.now(), "12345678L");
+        Customer customer = new Customer(1L);
         Goal newGoal = new Goal(null,"Obj1","Descripción del objetivo 1",5000.00,"En proceso",LocalDate.now(),customer);
 
         mvc.perform(post("/goals/customer/1")

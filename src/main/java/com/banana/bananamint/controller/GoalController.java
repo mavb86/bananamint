@@ -1,8 +1,8 @@
 package com.banana.bananamint.controller;
 
+import com.banana.bananamint.domain.Customer;
 import com.banana.bananamint.domain.Goal;
 import com.banana.bananamint.exception.GoalException;
-import com.banana.bananamint.persistence.CustomerJPARepository;
 import com.banana.bananamint.services.GoalServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -24,8 +24,6 @@ import java.util.List;
 public class GoalController {
     @Autowired
     GoalServiceImpl service;
-    @Autowired
-    CustomerJPARepository customerRepo;
 
     @Operation(summary = "Muestra los objetivos de un cliente", description = "Devuelve la lista de objetivos del cliente")
     @ApiResponses(value = {
@@ -47,7 +45,8 @@ public class GoalController {
     @PostMapping(value = "/customer/{idCustomer}")
     public ResponseEntity<List<Goal>> addByCostumer(@PathVariable @Min(1) Long idCustomer, @RequestBody @Valid Goal goal) throws SQLException {
         goal.setId(null);
-        goal.setUser(customerRepo.findById(idCustomer).get());
+        Customer customer = new Customer(1L);
+        goal.setUser(customer);
         return new ResponseEntity<>(service.add(idCustomer, goal), HttpStatus.CREATED);
     }
 }

@@ -27,6 +27,7 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Min(1)
     private Long id;
+
     @NotBlank
     @Size(min = 3, max = 30)
     private String name;
@@ -36,6 +37,10 @@ public class Customer {
     @DateTimeFormat
     private LocalDate birthDate;
     private String dni;
+
+    public Customer(Long id) {
+        this.id = id;
+    }
 
     public boolean isValid() throws CustomerException {
         // Para que el usuario sea valido:
