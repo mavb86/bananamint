@@ -11,5 +11,5 @@ public interface IncomeJPARepository extends JpaRepository<Income, Integer> {
 
     //public Income save(Income income) throws SQLException;
     public List<Income> findByUser_id(Long idCustomer);
-    public List<Income> findByUser_idAndEnterDateBetween(Long idCustomer, LocalDate initDate, LocalDate finalDate);
+    public List<Income> findByUser_idAndEnterDate(Long idCustomer, LocalDate oneDate);
 }

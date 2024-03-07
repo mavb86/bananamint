@@ -13,5 +13,5 @@ public interface ExpenseJPARepository extends JpaRepository<Expense, Integer> {
 
     //public Expense save(Expense expense) throws SQLException;
     public List<Expense> findByUser_id(Long idCustomer);
-    public List<Expense> findByUser_idAndDueDateBetween(Long idCustomer, LocalDate initDate, LocalDate finalDate);
+    public List<Expense> findByUser_idAndDueDate(Long idCustomer, LocalDate oneDate);
 }

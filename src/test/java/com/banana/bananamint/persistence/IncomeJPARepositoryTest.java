@@ -15,6 +15,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -52,5 +53,11 @@ class IncomeJPARepositoryTest {
             incomeJPARepository.save(in1);
         });
     }
+    @Test
+    void givenCustomerIdAndDates_WhenGetList_ThenOK() {
 
+        List<Income> incomeList = incomeJPARepository.findByUser_idAndEnterDate(1L, LocalDate.of(2024,02,02));
+        System.out.println("incomeList: " +incomeList);
+        assertThat(incomeList.size() > 0);
+    }
 }
