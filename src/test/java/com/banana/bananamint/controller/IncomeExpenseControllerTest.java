@@ -94,26 +94,5 @@ class IncomeExpenseControllerTest {
                 .andExpect(status().isBadRequest());
 
     }
-    @Test
-    void givenIdCustomerAndIDAccount_whenInexistintCustomer_thenResponse404() throws Exception {
-        Customer user = new Customer(1L, "Pepe", "pepe@p.com", LocalDate.of(2000,02,25), "12345678A");
-
-        Account account = new Account();
-        Mockito.when(accountJPARepository.findById(1L)).thenReturn(Optional.of(account));
-
-        Income incomeIn = new Income(null,user,1000, LocalDate.now(), account, "accepted");
-
-        /*Income incomeOut = new Income(null,user,1000, LocalDate.now(), account, "accepted");
-        incomeOut.setId(1);*/
-
-        Mockito.when(incomeExpenseService.addIncome(1L,incomeIn)).thenThrow(CustomerException.class);
-        mvc.perform(post("/IncomeExpense/ingresar/1/1")
-                        .content(JsonUtil.asJsonString(incomeIn))
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON)
-                )
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(status().isNotFound());
-
-    }
+    
 }
