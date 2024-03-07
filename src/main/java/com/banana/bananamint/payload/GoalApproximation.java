@@ -1,6 +1,7 @@
-package com.banana.bananamint.domain;
+package com.banana.bananamint.payload;
 
 
+import com.banana.bananamint.domain.Goal;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
