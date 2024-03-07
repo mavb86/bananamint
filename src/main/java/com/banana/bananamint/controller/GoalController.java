@@ -27,7 +27,7 @@ public class GoalController {
 
     @Operation(summary = "Muestra los objetivos de un cliente", description = "Devuelve la lista de objetivos del cliente")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Correctamente devuelto"),
+            @ApiResponse(responseCode = "200", description = "Devuelve los objetivos del cliente"),
             @ApiResponse(responseCode = "404", description = "No se han encontrado objetivos para el cliente")
     })
     @GetMapping(value = "/customer/{idCustomer}")
