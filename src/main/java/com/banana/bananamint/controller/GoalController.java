@@ -40,7 +40,7 @@ public class GoalController {
     @Operation(summary = "Añade un objetivo por cliente", description = "Persiste el nuevo objetivo y devuelve una lista de los objetivos del cliente")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Objetivo correctamente creado"),
-            @ApiResponse(responseCode = "4XX", description = "Solicitud incorrecta")
+            @ApiResponse(responseCode = "500", description = "Solicitud incorrecta")
     })
     @PostMapping(value = "/customer/{idCustomer}")
     public ResponseEntity<List<Goal>> addByCostumer(@PathVariable @Min(1) Long idCustomer, @RequestBody @Valid Goal goal) throws SQLException {
