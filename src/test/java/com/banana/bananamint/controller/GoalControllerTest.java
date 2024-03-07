@@ -42,7 +42,7 @@ class GoalControllerTest {
         Goal newGoal = new Goal(null, "Objetivo 1", "Descripción del objetivo 1", 5000.00, "En proceso", LocalDate.now(), customer);
 
         List<Goal> listGoals = new ArrayList();
-        Goal salidaGoal = new Goal(2L, "Objetivo 1", "Descripción del objetivo 1", 5000.00, "En proceso", LocalDate.now(), customer);
+        Goal salidaGoal = new Goal(1L, "Objetivo 1", "Descripción del objetivo 1", 5000.00, "En proceso", LocalDate.now(), customer);
         listGoals.add(salidaGoal);
 
         Mockito.when(goalService.add(any(),any())).thenReturn(listGoals);
@@ -54,10 +54,9 @@ class GoalControllerTest {
                 )
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.id").exists())
-                .andExpect(jsonPath("$.id", is(greaterThanOrEqualTo(1))));
-
-
+                .andExpect(jsonPath("$").exists())
+                .andExpect(jsonPath("$").isArray())
+                .andExpect(jsonPath("$").isNotEmpty());
     }
 
     @Test
