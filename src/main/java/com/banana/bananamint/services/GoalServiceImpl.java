@@ -15,16 +15,16 @@ import java.util.List;
 @Service
 public class GoalServiceImpl implements GoalService {
     @Autowired
-    GoalJPARepository repo;
+    GoalJPARepository repoGoal;
 
     @Override
     public List<Goal> showAll(Long idCustomer) throws GoalException, SQLException {
-        return repo.findAllByUser_Id(idCustomer);
+        return repoGoal.findAllByUser_Id(idCustomer);
     }
 
     @Override
     public List<Goal> add(Long idCustomer, Goal goal) throws GoalException, SQLException {
-        repo.save(goal);
+        repoGoal.save(goal);
         return this.showAll(idCustomer);
     }
 

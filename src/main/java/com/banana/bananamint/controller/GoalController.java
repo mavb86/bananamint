@@ -34,7 +34,7 @@ public class GoalController {
     public ResponseEntity<List<Goal>> getAllByCostumer(@PathVariable @Min(1) Long idCustomer) throws SQLException {
         List<Goal> listGoals = service.showAll(idCustomer);
         if (listGoals != null && listGoals.size() > 0) return new ResponseEntity<>(listGoals, HttpStatus.OK);
-        else throw new GoalException("No se han encontrado objetivos para el cliente "+idCustomer);
+        else throw new GoalException("No se han encontrado objetivos para el cliente " + idCustomer);
     }
 
     @Operation(summary = "Añade un objetivo por cliente", description = "Persiste el nuevo objetivo y devuelve una lista de los objetivos del cliente")
@@ -45,8 +45,14 @@ public class GoalController {
     @PostMapping(value = "/customer/{idCustomer}")
     public ResponseEntity<List<Goal>> addByCostumer(@PathVariable @Min(1) Long idCustomer, @RequestBody @Valid Goal goal) throws SQLException {
         goal.setId(null);
-        Customer customer = new Customer(1L);
+        Customer customer = new Customer(idCustomer);
         goal.setUser(customer);
-        return new ResponseEntity<>(service.add(idCustomer, goal), HttpStatus.CREATED);
+        try {
+            List<Goal> listGoals = service.add(idCustomer, goal);
+            if (listGoals != null && listGoals.size() > 0) return new ResponseEntity<>(listGoals, HttpStatus.OK);
+            else return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }catch (Exception e){
+            throw new GoalException("No se ha podido guardar el objetivo para el cliente " + idCustomer);
+        }
     }
 }
